@@ -1,284 +1,293 @@
-import React, { useState, useEffect } from 'react';
-import { Home, FileText, Settings, Book, ChevronDown, CheckCircle } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biggie Hub Dropdowns</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide-icons@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-fade-out {
+            animation: fadeOut 1.5s forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        .page-content {
+            display: none; /* Hidden by default */
+        }
+        .page-content.active {
+            display: block; /* Shown when active */
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-950 text-white font-inter flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
 
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
+    <h1 class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-12 text-center drop-shadow-lg leading-tight">
+        Biggie Hub Dropdowns
+    </h1>
 
-  const navigateTo = (page) => {
-    setCurrentPage(page);
-  };
+    <nav class="bg-gray-800 p-3 rounded-full shadow-lg mb-12 flex flex-wrap justify-center gap-4 max-w-full">
+        <button id="homeBtn" class="flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 bg-blue-600 text-white shadow-xl">
+            <i data-lucide="home" class="mr-2 w-5 h-5"></i> Home
+        </button>
+        <button id="scriptBtn" class="flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 bg-gray-700 text-gray-300 hover:bg-gray-600">
+            <i data-lucide="file-text" class="mr-2 w-5 h-5"></i> Script
+        </button>
+        <button id="featuresBtn" class="flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 bg-gray-700 text-gray-300 hover:bg-gray-600">
+            <i data-lucide="settings" class="mr-2 w-5 h-5"></i> Features
+        </button>
+        <button id="tutorialBtn" class="flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 bg-gray-700 text-gray-300 hover:bg-gray-600">
+            <i data-lucide="book" class="mr-2 w-5 h-5"></i> Tutorial
+        </button>
+    </nav>
 
-  const HomePage = () => (
-    <div className="flex flex-col items-center justify-center p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
-      <h2 className="text-5xl font-extrabold text-blue-400 mb-6 text-center leading-tight">
-        Biggie Hub Plugin Loader
-      </h2>
-      <div className="flex items-center space-x-4 p-4 bg-gray-700 rounded-full shadow-lg">
-        <div className="relative flex items-center justify-center w-12 h-12">
-          <div className="absolute w-10 h-10 border-4 border-blue-500 rounded-full animate-spin-slow opacity-75"></div>
-          <CheckCircle className="w-8 h-8 text-green-400 z-10" />
+    <main class="w-full max-w-5xl">
+        <!-- Home Page Content -->
+        <div id="homePage" class="page-content active flex flex-col items-center justify-center p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
+            <h2 class="text-5xl font-extrabold text-blue-400 mb-6 text-center leading-tight">
+                Biggie Hub Plugin Loader
+            </h2>
+            <div class="flex items-center space-x-4 p-4 bg-gray-700 rounded-full shadow-lg">
+                <div class="relative flex items-center justify-center w-12 h-12">
+                    <div class="absolute w-10 h-10 border-4 border-blue-500 rounded-full animate-spin-slow opacity-75"></div>
+                    <i data-lucide="check-circle" class="w-8 h-8 text-green-400 z-10"></i>
+                </div>
+                <p class="text-xl font-semibold text-white">The Website is Cooking...</p>
+            </div>
+            <p class="mt-8 text-lg text-gray-300 text-center max-w-2xl">
+                This is a Biggie Hub Plugin Loader.
+            </p>
         </div>
-        <p className="text-xl font-semibold text-white">The Website is Cooking...</p>
-      </div>
-      <p className="mt-8 text-lg text-gray-300 text-center max-w-2xl">
-        This is a Biggie Hub Plugin Loader.
-      </p>
-    </div>
-  );
 
-  const ScriptPage = () => (
-    <div className="p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
-      <h2 className="text-4xl font-bold text-blue-400 mb-6 border-b-2 border-gray-700 pb-4">
-        Script Execution
-      </h2>
-      <p className="text-gray-300 mb-4 text-lg">
-        To load the Biggie Hub Plugin Loader, simply execute the following script in Rf24 Or any other game:
-      </p>
-      <div className="bg-gray-900 p-6 rounded-lg font-mono text-sm text-green-300 shadow-inner overflow-x-auto relative">
-        <pre className="whitespace-pre-wrap break-all">
-          <code>
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/biggie-plugin/loader/refs/heads/main/main.lua"))()
-          </code>
-        </pre>
-        <button
-          onClick={() => {
-            document.execCommand('copy', false, 'loadstring(game:HttpGet("https://raw.githubusercontent.com/biggie-plugin/loader/refs/heads/main/main.lua"))()');
+        <!-- Script Page Content -->
+        <div id="scriptPage" class="page-content p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
+            <h2 class="text-4xl font-bold text-blue-400 mb-6 border-b-2 border-gray-700 pb-4">
+                Script Execution
+            </h2>
+            <p class="text-gray-300 mb-4 text-lg">
+                To load the Biggie Hub Plugin Loader, simply execute the following script in Rf24 Or any other game:
+            </p>
+            <div id="script-page-content" class="bg-gray-900 p-6 rounded-lg font-mono text-sm text-green-300 shadow-inner overflow-x-auto relative">
+                <pre class="whitespace-pre-wrap break-all">
+                    <code>
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/biggie-plugin/loader/refs/heads/main/main.lua"))()
+                    </code>
+                </pre>
+                <button id="copyScriptBtn" class="absolute top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" title="Copy to clipboard">
+                    Copy
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Page Content -->
+        <div id="featuresPage" class="page-content p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
+            <h2 class="text-4xl font-bold text-blue-400 mb-8 border-b-2 border-gray-700 pb-4">
+                Key Features
+            </h2>
+
+            <div class="mb-8 p-6 bg-gray-700 rounded-lg shadow-xl">
+                <h3 class="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
+                    Configs
+                    <i data-lucide="settings" class="ml-3 w-7 h-7 text-blue-300"></i>
+                </h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                    <li><span class="font-medium text-white">Name:</span> Custom name for your configuration.</li>
+                    <li><span class="font-medium text-white">Load:</span> Load a saved configuration.</li>
+                    <li><span class="font-medium text-white">Save:</span> Save your current configuration.</li>
+                    <li><span class="font-medium text-white">Delete:</span> Remove an existing configuration.</li>
+                    <li class="flex items-center">
+                        <span class="font-medium text-white">Print Configs:</span> (it'll be a dropdown soon)
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-8 p-6 bg-gray-700 rounded-lg shadow-xl">
+                <h3 class="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
+                    Luas
+                    <i data-lucide="file-text" class="ml-3 w-7 h-7 text-green-300"></i>
+                </h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                    <li><span class="font-medium text-white">Name:</span> Unique identifier for your Lua script.</li>
+                    <li><span class="font-medium text-white">Source:</span> The source code of the Lua script.</li>
+                    <li><span class="font-medium text-white">Load:</span> Load a custom Lua script.</li>
+                    <li><span class="font-medium text-white">Save:</span> Save a new Lua script.</li>
+                    <li><span class="font-medium text-white">Delete:</span> Delete an existing Lua script.</li>
+                    <li class="flex items-center">
+                        <span class="font-medium text-white">Print Luas:</span> (it'll be a dropdown soon)
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-8 p-6 bg-gray-700 rounded-lg shadow-xl">
+                <h3 class="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
+                    Preset Configs
+                    <i data-lucide="check-circle" class="ml-3 w-7 h-7 text-purple-300"></i>
+                </h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                    <li>Full Legit Player</li>
+                    <li>Semi Legit Player</li>
+                    <li>Semi Rage Player</li>
+                    <li>Troll Player</li>
+                    <li>Legit GK (Goalkeeper)</li>
+                    <li>Semi Legit GK</li>
+                </ul>
+            </div>
+
+            <div class="mb-8 p-6 bg-gray-700 rounded-lg shadow-xl">
+                <h3 class="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
+                    Macros
+                    <i data-lucide="home" class="ml-3 w-7 h-7 text-red-300"></i>
+                </h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                    <li><span class="font-medium text-white">Name:</span> Name of the macro.</li>
+                    <li><span class="font-medium text-white">Speed:</span> Playback speed of the macro.</li>
+                    <li>Start Recording</li>
+                    <li>Stop Recording</li>
+                    <li class="flex items-center">
+                        <span class="font-medium text-white">List Recordings:</span> (dropdown soon)
+                    </li>
+                    <li>Delete Recording</li>
+                    <li>Play Recording</li>
+                    <li>Keybinds</li>
+                </ul>
+            </div>
+
+            <div class="mb-8 p-6 bg-gray-700 rounded-lg shadow-xl">
+                <h3 class="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
+                    Cloud Configs
+                    <i data-lucide="chevron-down" class="ml-3 w-7 h-7 text-yellow-300"></i>
+                </h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                    <li>Load Cloud Config</li>
+                </ul>
+            </div>
+
+            <div class="p-6 bg-gray-700 rounded-lg shadow-xl">
+                <h3 class="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
+                    Miscellaneous
+                    <i data-lucide="book" class="ml-3 w-7 h-7 text-cyan-300"></i>
+                </h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                    <li>Disable Shield Ball Keybind</li>
+                    <li class="flex items-center">
+                        <span class="font-medium text-white">Themes:</span> (over 25+ themes)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tutorial Page Content -->
+        <div id="tutorialPage" class="page-content p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
+            <h2 class="text-4xl font-bold text-blue-400 mb-6 border-b-2 border-gray-700 pb-4">
+                Getting Started Tutorial
+            </h2>
+            <ol class="list-decimal list-inside text-gray-300 space-y-4 text-lg">
+                <li class="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
+                    <span class="font-bold text-blue-300 mr-2">1.</span>
+                    <div>
+                        <span class="font-medium text-white">Execute Biggie:</span>
+                        <p class="text-gray-400 text-base mt-1">
+                            Start by executing the main Biggie Hub script in your game client.
+                        </p>
+                    </div>
+                </li>
+                <li class="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
+                    <span class="font-bold text-blue-300 mr-2">2.</span>
+                    <div>
+                        <span class="font-medium text-white">Get Script:</span>
+                        <p class="text-gray-400 text-base mt-1">
+                            Obtain the latest script from the <span class="font-semibold text-blue-400">#script</span> section on our platform.
+                        </p>
+                    </div>
+                </li>
+                <li class="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
+                    <span class="font-bold text-blue-300 mr-2">3.</span>
+                    <div>
+                        <span class="font-medium text-white">Modify for Specific Branch:</span>
+                        <p class="text-gray-400 text-base mt-1">
+                            Adjust the script as needed to target your specific branch or version.
+                        </p>
+                    </div>
+                </li>
+                <li class="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
+                    <span class="font-bold text-blue-300 mr-2">4.</span>
+                    <div>
+                        <span class="font-medium text-white">Execute Plugin:</span>
+                        <p class="text-gray-400 text-base mt-1">
+                            Finally, execute the plugin to activate its features in your game.
+                        </p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </main>
+
+    <script>
+        // Get all page content containers
+        const pages = document.querySelectorAll('.page-content');
+        // Get all navigation buttons
+        const navButtons = document.querySelectorAll('nav button');
+
+        // Function to show a specific page and update active button styles
+        function showPage(pageId, activeBtnId) {
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+
+            navButtons.forEach(button => {
+                button.classList.remove('bg-blue-600', 'text-white', 'shadow-xl');
+                button.classList.add('bg-gray-700', 'text-gray-300', 'hover:bg-gray-600');
+            });
+            const activeBtn = document.getElementById(activeBtnId);
+            activeBtn.classList.remove('bg-gray-700', 'text-gray-300', 'hover:bg-gray-600');
+            activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-xl');
+        }
+
+        // Event listeners for navigation buttons
+        document.getElementById('homeBtn').addEventListener('click', () => showPage('homePage', 'homeBtn'));
+        document.getElementById('scriptBtn').addEventListener('click', () => showPage('scriptPage', 'scriptBtn'));
+        document.getElementById('featuresBtn').addEventListener('click', () => showPage('featuresPage', 'featuresBtn'));
+        document.getElementById('tutorialBtn').addEventListener('click', () => showPage('tutorialPage', 'tutorialBtn'));
+
+        // Copy script to clipboard functionality
+        document.getElementById('copyScriptBtn').addEventListener('click', () => {
+            const scriptCode = document.querySelector('#scriptPage pre code').innerText;
+            document.execCommand('copy', false, scriptCode);
+
             const copyFeedback = document.createElement('div');
             copyFeedback.innerText = 'Copied!';
             copyFeedback.className = 'absolute top-2 right-2 px-3 py-1 bg-green-600 text-white text-xs rounded-full opacity-0 animate-fade-out';
             document.getElementById('script-page-content').appendChild(copyFeedback);
             setTimeout(() => copyFeedback.remove(), 1500);
-          }}
-          className="absolute top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-          title="Copy to clipboard"
-        >
-          Copy
-        </button>
-        <div id="script-page-content"></div>
-      </div>
-    </div>
-  );
+        });
 
-  const FeaturesPage = () => (
-    <div className="p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
-      <h2 className="text-4xl font-bold text-blue-400 mb-8 border-b-2 border-gray-700 pb-4">
-        Key Features
-      </h2>
-
-      <div>
-        <h3 className="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
-          Configs
-          <Settings className="ml-3 text-blue-300" size={28} />
-        </h3>
-        <ul className="list-disc list-inside text-gray-300 space-y-2 text-lg">
-          <li><span className="font-medium text-white">Name:</span> Custom name for your configuration.</li>
-          <li><span className="font-medium text-white">Load:</span> Load a saved configuration.</li>
-          <li><span className="font-medium text-white">Save:</span> Save your current configuration.</li>
-          <li><span className="font-medium text-white">Delete:</span> Remove an existing configuration.</li>
-          <li className="flex items-center">
-            <span className="font-medium text-white">Print Configs:</span> (it'll be a dropdown soon)
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
-          Luas
-          <FileText className="ml-3 text-green-300" size={28} />
-        </h3>
-        <ul className="list-disc list-inside text-gray-300 space-y-2 text-lg">
-          <li><span className="font-medium text-white">Name:</span> Unique identifier for your Lua script.</li>
-          <li><span className="font-medium text-white">Source:</span> The source code of the Lua script.</li>
-          <li><span className="font-medium text-white">Load:</span> Load a custom Lua script.</li>
-          <li><span className="font-medium text-white">Save:</span> Save a new Lua script.</li>
-          <li><span className="font-medium text-white">Delete:</span> Delete an existing Lua script.</li>
-          <li className="flex items-center">
-            <span className="font-medium text-white">Print Luas:</span> (it'll be a dropdown soon)
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
-          Preset Configs
-          <CheckCircle className="ml-3 text-purple-300" size={28} />
-        </h3>
-        <ul className="list-disc list-inside text-gray-300 space-y-2 text-lg">
-          <li>Full Legit Player</li>
-          <li>Semi Legit Player</li>
-          <li>Semi Rage Player</li>
-          <li>Troll Player</li>
-          <li>Legit GK (Goalkeeper)</li>
-          <li>Semi Legit GK</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
-          Macros
-          <Home className="ml-3 text-red-300" size={28} />
-        </h3>
-        <ul className="list-disc list-inside text-gray-300 space-y-2 text-lg">
-          <li><span className="font-medium text-white">Name:</span> Name of the macro.</li>
-          <li><span className="font-medium text-white">Speed:</span> Playback speed of the macro.</li>
-          <li>Start Recording</li>
-          <li>Stop Recording</li>
-          <li className="flex items-center">
-            <span className="font-medium text-white">List Recordings:</span> (dropdown soon)
-          </li>
-          <li>Delete Recording</li>
-          <li>Play Recording</li>
-          <li>Keybinds</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
-          Cloud Configs
-          <ChevronDown className="ml-3 text-yellow-300" size={28} />
-        </h3>
-        <ul className="list-disc list-inside text-gray-300 space-y-2 text-lg">
-          <li>Load Cloud Config</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-3xl font-semibold text-gray-200 mb-4 flex items-center">
-          Miscellaneous
-          <Book className="ml-3 text-cyan-300" size={28} />
-        </h3>
-        <ul className="list-disc list-inside text-gray-300 space-y-2 text-lg">
-          <li>Disable Shield Ball Keybind</li>
-          <li className="flex items-center">
-            <span className="font-medium text-white">Themes:</span> (over 25+ themes)
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-
-  const TutorialPage = () => (
-    <div className="p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl animate-fade-in">
-      <h2 className="text-4xl font-bold text-blue-400 mb-6 border-b-2 border-gray-700 pb-4">
-        Getting Started Tutorial
-      </h2>
-      <ol className="list-decimal list-inside text-gray-300 space-y-4 text-lg">
-        <li className="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
-          <span className="font-bold text-blue-300 mr-2">1.</span>
-          <div>
-            <span className="font-medium text-white">Execute Biggie:</span>
-            <p className="text-gray-400 text-base mt-1">
-              Start by executing the main Biggie Hub script in your game client.
-            </p>
-          </div>
-        </li>
-        <li className="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
-          <span className="font-bold text-blue-300 mr-2">2.</span>
-          <div>
-            <span className="font-medium text-white">Get Script:</span>
-            <p className="text-gray-400 text-base mt-1">
-              Obtain the latest script from the <span className="font-semibold text-blue-400">#script</span> section on our platform.
-            </p>
-          </div>
-        </li>
-        <li className="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
-          <span className="font-bold text-blue-300 mr-2">3.</span>
-          <div>
-            <span className="font-medium text-white">Modify for Specific Branch:</span>
-            <p className="text-gray-400 text-base mt-1">
-              Adjust the script as needed to target your specific branch or version.
-            </p>
-          </div>
-        </li>
-        <li className="bg-gray-700 p-4 rounded-lg shadow-md flex items-start">
-          <span className="font-bold text-blue-300 mr-2">4.</span>
-          <div>
-            <span className="font-medium text-white">Execute Plugin:</span>
-            <p className="text-gray-400 text-base mt-1">
-              Finally, execute the plugin to activate its features in your game.
-            </p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen bg-gray-950 text-white font-inter flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
-      <script src="https://cdn.tailwindcss.com"></script>
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-          body {
-            font-family: 'Inter', sans-serif;
-          }
-          .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-spin-slow {
-            animation: spin 3s linear infinite;
-          }
-          @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          .animate-fade-out {
-            animation: fadeOut 1.5s forwards;
-          }
-          @keyframes fadeOut {
-            0% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-          }
-        `}
-      </style>
-
-      <h1 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-12 text-center drop-shadow-lg leading-tight">
-        Biggie Hub Dropdowns
-      </h1>
-
-      <nav className="bg-gray-800 p-3 rounded-full shadow-lg mb-12 flex flex-wrap justify-center gap-4 max-w-full">
-        <button
-          onClick={() => navigateTo('home')}
-          className={`flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105
-            ${currentPage === 'home' ? 'bg-blue-600 text-white shadow-xl' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <Home className="mr-2" size={20} /> Home
-        </button>
-        <button
-          onClick={() => navigateTo('script')}
-          className={`flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105
-            ${currentPage === 'script' ? 'bg-blue-600 text-white shadow-xl' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <FileText className="mr-2" size={20} /> Script
-        </button>
-        <button
-          onClick={() => navigateTo('features')}
-          className={`flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105
-            ${currentPage === 'features' ? 'bg-blue-600 text-white shadow-xl' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <Settings className="mr-2" size={20} /> Features
-        </button>
-        <button
-          onClick={() => navigateTo('tutorial')}
-          className={`flex items-center px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105
-            ${currentPage === 'tutorial' ? 'bg-blue-600 text-white shadow-xl' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-        >
-          <Book className="mr-2" size={20} /> Tutorial
-        </button>
-      </nav>
-
-      <main className="w-full max-w-5xl">
-        {currentPage === 'home' && <HomePage />}
-        {currentPage === 'script' && <ScriptPage />}
-        {currentPage === 'features' && <FeaturesPage />}
-        {currentPage === 'tutorial' && <TutorialPage />}
-      </main>
-    </div>
-  );
-};
-
-export default App;
+        // Initialize Lucide icons
+        window.onload = function() {
+            lucide.createIcons();
+            // Ensure home page is active on load
+            showPage('homePage', 'homeBtn');
+        };
+    </script>
+</body>
+</html>
